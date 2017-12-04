@@ -1,8 +1,11 @@
 package com.ainong.dubbo;
 
 import com.alibaba.dubbo.config.*;
+import com.alibaba.dubbo.config.spring.AnnotationBean;
+import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,14 +48,15 @@ public class DubboAutoConfiguration {
 		return protocolConfig;
 	}
 
-	@Bean
-	public HystrixConfig requestHystrixConfig() {
-		HystrixConfig hystrixConfig = dubboProperties.getHystrix();
-		if (hystrixConfig == null) {
-			hystrixConfig = new HystrixConfig();
-		}
-		return hystrixConfig;
-	}
+
+
+
+	/*@Bean
+	public AnnotationBean annotationBean() {
+		AnnotationBean annotationBean = new AnnotationBean();
+		annotationBean.setPackage("org.spring.springboot");
+		return annotationBean;
+	}*/
 
 	/*@Bean
 	public MonitorConfig requestMonitorConfig() {
